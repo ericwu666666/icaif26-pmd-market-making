@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In-Context PMD in Market Making · ICAIF ’26 Workshop</title>
+<meta name="description" content="Where Does Learned In-Context Policy Mirror Descent Pay Off in Market Making? A Component Diagnosis. Poster 03, ICAIF 2026 Workshop on AI-Driven Market Microstructure, Milan.">
+<meta property="og:title" content="Where Does Learned In-Context Policy Mirror Descent Pay Off in Market Making? A Component Diagnosis">
+<meta property="og:description" content="Poster 03 · ICAIF ’26 Workshop on AI-Driven Market Microstructure · Milan, 14 Nov 2026">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300929A'/%3E%3Cpath d='M8 22 L14 12 L19 18 L24 9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --teal: #00929A;
+    --teal-soft: #E3F4F4;
+    --navy: #183B63;
+    --ochre: #C05F0C;
+    --bg: #FFFFFF;
+    --surface: #F6F8FA;
+    --ink: #1B2430;
+    --muted: #5A6675;
+    --rule: #DCE2E8;
+    --serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+    --sans: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal: #2BB7BE;
+      --teal-soft: #0F2E31;
+      --navy: #8FB3DC;
+      --ochre: #E08A45;
+      --bg: #0F141A;
+      --surface: #171E26;
+      --ink: #E6EAEE;
+      --muted: #A3AEBB;
+      --rule: #2A333D;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .topbar { height: 6px; background: var(--navy); }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 56px; }
+  .kicker {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 40px);
+    line-height: 1.18;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  h1 .second { color: var(--teal); }
+  .subtitle { font-style: italic; font-size: 20px; color: var(--muted); margin: 0 0 22px; }
+  .authors { font-family: var(--sans); font-size: 18px; margin: 0; }
+  .affil { font-family: var(--sans); font-size: 16px; color: var(--muted); margin: 2px 0 0; }
+  .session {
+    margin: 28px 0 0;
+    padding: 16px 18px;
+    border-left: 5px solid var(--teal);
+    background: var(--teal-soft);
+    border-radius: 0 8px 8px 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .session strong { color: var(--ink); }
+  .session p { margin: 0; }
+  .session p + p { margin-top: 4px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; padding: 0; list-style: none; }
+  .links a, .links span {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+  }
+  .links a:hover, .links a:focus-visible { background: var(--navy); color: var(--bg); }
+  .links span.soon { border-style: dashed; border-color: var(--rule); color: var(--muted); font-weight: 500; }
+  h2 {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 40px 0 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+  }
+  .abstract { margin: 0; hyphens: auto; }
+  .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .keywords { font-family: var(--sans); font-size: 15px; color: var(--muted); margin: 14px 0 0; }
+  footer {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 44px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+  }
+  a { color: var(--teal); }
+</style>
+</head>
+<body>
+<div class="topbar" aria-hidden="true"></div>
+<main>
+  <p class="kicker">ICAIF ’26 Workshop · AI-Driven Market Microstructure · Milan</p>
+  <h1>Where Does Learned In-Context Policy Mirror Descent <span class="second">Pay Off in Market Making?</span></h1>
+  <p class="subtitle">A Component Diagnosis</p>
+  <p class="authors">Xinyue Wu · Yuhe Sui · Shufang Chen · Yingzhi Tang</p>
+  <p class="affil">Quantitative Research Society</p>
+
+  <section class="session" aria-label="Poster session">
+    <p><strong>Poster 03</strong> · Workshop on AI-Driven Market Microstructure in Centralized and Decentralized Finance, ICAIF 2026</p>
+    <p>Saturday 14 November 2026 · Room 1, Bocconi University, Milan</p>
+    <p>Posters at lunch (13:00–14:00) and the coffee break (16:00–16:30 CET)</p>
+  </section>
+
+  <ul class="links">
+    <li><span class="soon">Paper PDF · coming soon</span></li>
+    <li><span class="soon">Poster PDF · coming soon</span></li>
+    <li><a href="https://icaif2026.org/workshop-papers/#paper-ai-market-microstructure-1245">Official listing (#1245)</a></li>
+    <li><a href="https://icaif-ai-driven.github.io/">Workshop website</a></li>
+  </ul>
+
+  <h2>Abstract</h2>
+  <p class="abstract">Returns hide which learned component of a market maker fails after a regime shift. We diagnose a frozen Transformer running policy mirror descent (PMD) in context: a learned actor plus a learned critic fed six sampled transitions per state–action pair. On a synthetic, exactly solvable market family under fee, volatility, liquidity and toxicity stress, we swap each component for its exact counterpart and measure value capture (uniform 0, optimum 1), not P&amp;L. Across 5 trained runs × 64 paired markets per family, pre-registered two-sided tests show the full loop holds against exact PMD on nominal markets. The actor stays within the holds margin on all nine families (small excess only under severe volatility and toxicity: <span class="num">+0.0035</span>, <span class="num">+0.0062</span>); the critic’s excess is positive everywhere, and a follow-up untrained six-sample average loses <span class="num">0.70–1.10</span> times as much. The loop beats HBEST, the best nominal rule, under severe fee and toxicity stress but loses to it on nominal, volatility and illiquidity markets, and to the order-flow rule HIMB under toxicity. From a random start, in-context adaptation loses to the carried old-regime optimum on 6 of 8 stress families. The critic stage should be improved first.</p>
+  <p class="keywords"><strong>Keywords:</strong> market making, in-context reinforcement learning, policy mirror descent, Transformers, market microstructure, regime shift</p>
+
+  <footer>
+    Page maintained by the authors · last updated 7 November 2026
+  </footer>
+</main>
+</body>
+</html>
